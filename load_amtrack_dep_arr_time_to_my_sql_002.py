@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
-Created on Tue Mar 12 16:19:23 2019
 @author: Pipatphon Lapamonpinyo
+Web: https://csun.uic.edu/codes/PAWU.html
 """
 #Retrieve data from https://juckins.net/amtrak_status/archive/html/history.php to CVS
 import requests
