@@ -1,0 +1,50 @@
+#For retrieveing departure time from Amtack====================================
+#Retrieve data from https://juckins.net/amtrak_status/archive/html/history.php
+#Searching options: 1) by train number 2) by station code
+#For searching by train numner, please leave station_list blank and vice versa
+searching_option: 1
+
+train_number_list:
+- 350
+
+station_list:
+  '350':
+  - CHI
+  - TRM
+  - JXN
+  - NLS
+  - MCI
+  - ARB
+  - PNT
+  - HMI
+  - DET
+  - KAL
+  - DER
+  - BTL
+  - NBU
+  - BMM
+  - ROY
+  - DOA
+
+station_list_for_searching:
+- MKE
+- MKA
+- LAF
+- REN
+- IND
+- DYE
+
+start_date:
+  day: 1
+  month: 1
+  year: 2008
+
+end_date:
+  day: 31
+  month: 12
+  year: 2019
+
+#Retrieve data from Weather Underground via the following api-service (v2.0),
+#which will search historical data by location(lat, long)
+#url = https://api-ak.wunderground.com/api/'+wu_api_key+'/history_'date +'/daily/units:both/v:2.0/q/'+location+'.json'
+wu_api_key: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
