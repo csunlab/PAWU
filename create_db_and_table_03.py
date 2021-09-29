@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
-Created on Wed Apr 17 11:56:03 2019
 @author: Pipatphon Lapamonpinyo
+Web: https://csun.uic.edu/codes/PAWU.html
 """
 #-----------------------------------------------------------------------------------------
 def load_myvars_configurations(yaml_filename):
