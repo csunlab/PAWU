@@ -1,0 +1,183 @@
+---
+#For creating mysql database =============================================================
+db_admin:
+    host: "localhost"
+    user: "root"
+    passwd: "1234"
+    db_name: "amtack_project"
+    #Recommed not to change table names below
+    stations_table_name: stations 
+    departure_table_name: departure
+    arrival_table_name: arrival
+    weather_table_name: weather
+    ridership_total_table_name: ridership_total
+
+#For creating tables =====================================================================   
+stations_table:
+    #list table fields below
+    - STN_ID INT
+    - STNCODE VARCHAR(10)
+    - STNNAME VARCHAR(255)
+    - CITY2 VARCHAR(50)
+    - STATE VARCHAR(50)
+    - STFIPS INT
+    - Latitude FLOAT
+    - Longitude FLOAT
+
+stations_pk:
+    #Leave it blank if there is no pk
+    - STN_ID
+
+stations_fk:
+    #Leave it blank if there is no pk
+    - null
+
+#"departure" table -----------------------------------------------------------------------
+departure_table:
+    - dp_date DATE
+    - train_number INT
+    - STN_ID INT
+    - sch_dp TIME
+    - act_dp TIME
+    - comments VARCHAR(255)
+    - service_disruption VARCHAR(255)
+    - cancellations VARCHAR(255)
+
+departure_pk:
+    - dp_date
+    - train_number
+    - STN_ID
+
+departure_fk:
+    ref_table: stations
+    col: STN_ID
+
+#"arrival" table -----------------------------------------------------------------------
+arrival_table:
+    - ar_date DATE
+    - train_number INT
+    - STN_ID INT
+    - sch_ar TIME
+    - act_ar TIME
+    - comments VARCHAR(255)
+    - service_disruption VARCHAR(255)
+    - cancellations VARCHAR(255)
+
+arrival_pk:
+    - ar_date
+    - train_number
+    - STN_ID
+
+arrival_fk:
+    ref_table: stations
+    col: STN_ID
+    
+#"weather" table -------------------------------------------------------------------------
+weather_table:
+    - w_date DATE
+    # Expiration time in UNIX seconds
+    - expire_time_gmt int(11)
+    - valid_time_gmt int(11)
+    - STN_ID INT
+    - obs_id VARCHAR(20)
+    - obs_name VARCHAR(125)
+    # Daytime or nighttime
+    - day_ind VARCHAR(10)
+    # 0-48 weather icon 
+    - wx_icon INT
+    - icon_extd INT
+    - wx_phrase VARCHAR(125)
+    - temp INT
+    - max_temp INT
+    - min_temp INT
+    - feels_like INT
+    # what the air temperature “feels like” on exposed when the temperature is 70°F or higher
+    - heat_index INT
+    # The air temperature “feels like”, used only if temp is below 40
+    - wc INT
+    # The change in the barometric pressure [0,1,2]
+    - pressure_tend INT
+    - pressure_desc VARCHAR(125)
+    # Barometric pressure
+    - pressure FLOAT
+    # The Dew Point is also an indirect measure of the humidity of the air.
+    - dewPt INT
+    # The relative humidity of the air [0-100]
+    - rh INT
+    # The horizontal visibility at the observation point [0-999]
+    - vis FLOAT
+    # The direction from which the wind blows expressed in degrees [0-360]
+    - wdir INT
+    # The cardinal direction from which the wind blows in an abbreviated form.
+    - wdir_cardinal VARCHAR(10)
+    # Wind gust speed.
+    - gust INT
+    # Wind Speed.
+    - wspd INT
+    # Precipitation amount in the last rolling 24 hour period [0.00-99.99]
+    - precip_total FLOAT
+    # Precipitation for the last hour
+    - precip_hrly FLOAT
+    # Snow increasing rapidly in inches or centimeters per hour [0-15]
+    - snow_hrly FLOAT
+    # Ultraviolet index description
+    - uv_desc VARCHAR(20)
+    # Ultraviolet index 0-11, and 999
+    - uv_index INT
+    # Weather description qualifier code
+    - qualifier VARCHAR(20)
+    # Weather description qualifier severity [1 (low) to 6 (high)]
+    - qualifier_svrty VARCHAR(20)
+    # Cloud cover description code [SKC, CLR, SCT, FEW, BKN, OVC]
+    - clds VARCHAR(10)
+    # Water temperature [0-100]
+    - water_temp INT
+    # 0-99
+    - primary_wave_period INT
+    # 0-99.99
+    - primary_wave_height FLOAT
+    # 0-99
+    - primary_swell_period INT
+    # 0-99.99
+    - primary_swell_height FLOAT
+    # 0 to 359
+    - primary_swell_direction INT
+    # 0-99
+    - secondary_swell_period INT
+    # 0.00-99.99
+    - secondary_swell_height FLOAT
+    # 0 to 359
+    - secondary_swell_direction INT
+    
+weather_pk:
+    - w_date
+    - expire_time_gmt
+    - STN_ID
+
+weather_fk:
+    ref_table: stations
+    col: STN_ID
+
+#For creating ridership_total table =====================================================================   
+ridership_total_table:
+    #list table fields below
+    - r_date DATE
+    - corridor_name VARCHAR(50)
+    - STN_ID INT
+    - ridership_total INT
+
+ridership_total_pk:
+    #Leave it blank if there is no pk
+    - r_date
+    - corridor_name
+    - STN_ID
+
+ridership_total_fk:
+    #Leave it blank if there is no pk
+    ref_table: stations
+    col: STN_ID
+#=========================================================================================
+#Amtack stations data --------------------------------------------------------------------  
+stations_csv_filename: "Amtrak_Stations_2020.csv"
+
+#=========================================================================================  
